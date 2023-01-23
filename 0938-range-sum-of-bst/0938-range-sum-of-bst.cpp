@@ -15,8 +15,10 @@ public:
        if(!root)
             return 0;
         
-        return (low <= root->val and high >=root->val ? root->val : 0) + 
-            rangeSumBST(root->left , low, high) + rangeSumBST(root->right , low, high);
+        if(root->val > high) return rangeSumBST(root->left , low , high);
+        if(root->val < low)  return rangeSumBST(root->right , low , high);
+        
+        return root->val + rangeSumBST(root->left , low , high) + rangeSumBST(root->right , low , high);
     }
     
 };
